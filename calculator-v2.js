@@ -1,7 +1,7 @@
 var myBarChart = null;
 var myPieChart = null;
 var footprint_final = 0;
-var travel_footprint = 0;
+var trees_eq = 0;
 
    
 $('.submit').on('click', function(e) {
@@ -38,12 +38,12 @@ function footprintCalculate() {
   let horse = document.getElementById("horse").value; //input
   let rabbit = document.getElementById("rabbit").value; //input
   let fish = document.getElementById("fish").value; //input
-  var energy_usage_ef = 0
-  var mobility_ef = 0
-  var heating_ef = 0
+  var energy_usage_ef = 0;
+  var mobility_ef = 0;
+  var heating_ef = 0;
 
-const obj_country = {"ch": "der Schweiz", "de": "Deutschland", "at":"Österreich"}
-const obj_country_average = {"ch": 14, "de": 11.6, "at":11}
+const obj_country = {"ch": "der Schweiz", "de": "Deutschland", "at":"Österreich"};
+const obj_country_average = {"ch": 14, "de": 11.6, "at":11};
   const obj_num_people = {"alone":1,"two-peop":2,"three-peop":3,"four-peop":4,"five-peop":5};
   const obj_ch_living = {"alone":230,"two-peop":179,"three-peop":154,"four-peop":134,"five-peop":110};
   const obj_de_living = {"alone":781,"two-peop":608,"three-peop":521,"four-peop":456,"five-peop":373};
@@ -55,12 +55,12 @@ const obj_country_average = {"ch": 14, "de": 11.6, "at":11}
   const obj_de_mobility = {"pass-car":0.183,"suv":0.273,"hybrid":0.105,"electric":0.086,"motorbike":0.118, "public":0.017, "bicycle":0, "mix":0.094};
   const obj_at_mobility = {"pass-car":0.183,"suv":0.273,"hybrid":0.105,"electric":0.004,"motorbike":0.118, "public":0.017, "bicycle":0, "mix":0.094};
   const obj_flight = {"short":311,"medium":625,"long":2630};
-  const obj_pet = {cat:380, dog:790, horse:2400, rabbit:95, fish:89}
+  const obj_pet = {cat:380, dog:790, horse:2400, rabbit:95, fish:89};
 
   switch(country){
-  case "ch":  {energy_usage_ef = obj_ch_living[people]; mobility_ef = obj_ch_mobility[mobility];heating_ef = obj_ch_heating[heating]}
-  case "de": {energy_usage_ef = obj_de_living[people]; mobility_ef = obj_de_mobility[mobility];heating_ef = obj_de_heating[heating]}
-  case "at": {energy_usage_ef = obj_at_living[people];mobility_ef = obj_at_mobility[mobility];heating_ef = obj_at_heating[heating]}
+  case "ch":  {energy_usage_ef = obj_ch_living[people]; mobility_ef = obj_ch_mobility[mobility];heating_ef = obj_ch_heating[heating]};
+  case "de": {energy_usage_ef = obj_de_living[people]; mobility_ef = obj_de_mobility[mobility];heating_ef = obj_de_heating[heating]};
+  case "at": {energy_usage_ef = obj_at_living[people];mobility_ef = obj_at_mobility[mobility];heating_ef = obj_at_heating[heating]};
 }
 
 
@@ -72,6 +72,7 @@ const obj_country_average = {"ch": 14, "de": 11.6, "at":11}
   let pet_final = (cat * obj_pet[cat]) + (dog * obj_pet[dog]) + (horse * obj_pet[horse]) + (rabbit * obj_pet[rabbit]) + (fish * obj_pet[fish]);
   let footprint_final = ((+living_final + +mobility_final + +flight_final + +nutrition_final + +consumption_final + +pet_final)/1000).toFixed(2);
 let trees_eq = Math.round(footprint_final) / 0.028;
+console.log(living_final, mobility_final, flight_final, nutrition_final, consumption_final, pet_final, footprint_final, trees_eq);
 
   document.getElementById("average-footprint").innerHTML = footprint_final;
 document.getElementById("country-name").innerHTML = obj_country[country];
@@ -195,3 +196,4 @@ function decreaseCount(a, b) {
     input.value = value;
   }
 }
+
